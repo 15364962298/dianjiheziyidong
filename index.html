@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动盒子</title>
+    <style>
+        .box{
+            width:150px;
+            height: 150px;
+            border:5px solid #ff6700;
+            position: relative;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
+<script>
+    let box=document.querySelector('.box')
+    box.onmousedown=function(event){
+        event=event||window.event;
+        x0=event.clientX;
+        y0=event.clientY;
+        h=this.offsetTop;
+        w=this.offsetLeft;
+        box.onmousemove=function(event2){
+            event=event2||window.event
+            x1=event.clientX
+            y1=event.clientY
+            x=x1-x0+w
+            y=y1-y0+h
+            this.style=`top:${y}px;left:${x}px;`
+        }
+        box.onmouseup=function(){
+            box.onmouseup=""
+            box.onmousemove=""
+        }
+    }
+</script>
